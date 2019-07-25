@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lz.dao.BaUserDao">
+
+	<resultMap id="baUserMap" type="com.lz.entity.BaUser">
+		<id column="uid" property="uid" />
+		<result column="nick" property="nick" />
+		<result column="head" property="head" />
+		<result column="sex" property="sex" />
+		<result column="gold" property="gold" />
+		<result column="material" property="material" />
+		<result column="diamond" property="diamond" />
+		<result column="customs" property="customs" />
+		<result column="logTime" property="logTime" />
+		<result column="regTime" property="regTime" />
+		<result column="inviterUid" property="inviterUid" />
+		<!-- <association property="personInfo" column="user_id"
+			javaType="com.imooc.myo2o.entity.PersonInfo">
+			<id column="user_id" property="userId" />
+			<result column="name" property="name" />
+			<result column="birthday" property="birthday" />
+			<result column="gender" property="gender" />
+			<result column="phone" property="phone" />
+			<result column="email" property="email" />
+			<result column="profile_img" property="profileImg" />
+			<result column="customer_flag" property="customerFlag" />
+			<result column="shop_owner_flag" property="shopOwnerFlag" />
+			<result column="admin_flag" property="adminFlag" />
+			<result column="create_time" property="createTime" />
+			<result column="last_edit_time" property="lastEditTime" />
+			<result column="enable_status" property="enableStatus" />
+		</association> -->
+	</resultMap>
+
+	<select id="findAll" resultMap="baUserMap">
+		select * from bauser
+	</select>
+	
+	<select id="findBaUserById" parameterType="long" resultMap="baUserMap">
+		select * from bauser where uid = #{0}
+	</select>
+	
+	
+	<!-- <update id="updateUserGold" parameterType="com.lz.entity.BaUser">
+		update bauser set gold = #{gold} where uid = #{uid}
+	</update> -->
+	
+	<update id="updateUserGold">
+	update bauser 
+	 <trim prefix="set" suffixOverrides=","> 
+		<if test=" gold != null and gold != ''">
+			gold=#{gold},
+		</if>
+		
+		<if test=" material != null and material != ''">
+			material=#{material}, 
+		</if>
+	 </trim>	
+		where uid=#{uid}
+</update>
+
+
+	
+	
+
+</mapper>
