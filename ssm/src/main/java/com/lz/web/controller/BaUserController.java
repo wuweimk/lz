@@ -82,6 +82,7 @@ public class BaUserController {
 		
 	}
 	
+	//获取用户排名情况
 	
 	
 	
