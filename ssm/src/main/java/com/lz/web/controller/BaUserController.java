@@ -59,6 +59,7 @@ public class BaUserController {
 		
 	}
 	
+	//设置用户金币
 	@RequestMapping("/setUserGold")
 	public Result setUserGold(){
 		
